@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* Enable DaisyUI and select built-in themes as fallbacks */
+@plugin "daisyui" {
+	/* Keep light/dark; we’ll apply our custom 'agency' theme as default below */
+	themes: light --prefersdark, dark;
+	logs: false;
+}
+
+/* Custom DaisyUI theme: 'agency' */
+@plugin "daisyui/theme" {
+	name: "agency";
+	default: true; /* make it default */
+	prefersdark: false;
+	color-scheme: dark;
+
+	/* Brand palette (soft lilac → electric purple → deep indigo) using OKLCH */
+	--color-primary: oklch(62% 0.24 300);
+	--color-primary-content: oklch(98% 0.02 300);
+
+	--color-secondary: oklch(60% 0.22 280); /* electric purple */
+	--color-accent: oklch(70% 0.2 240); /* electric blue */
+	--color-neutral: oklch(24% 0.03 260); /* charcoal/dark navy */
+
+	--color-base-100: oklch(14% 0.02 260); /* background */
+	--color-base-200: oklch(18% 0.02 260);
+	--color-base-300: oklch(22% 0.02 260);
+	--color-base-content: oklch(94% 0.02 260); /* off-white text */
+
+	--color-info: oklch(72% 0.18 235);
+	--color-success: oklch(72% 0.18 160);
+	--color-warning: oklch(78% 0.18 85);
+	--color-error: oklch(62% 0.22 25);
+
+	/* Rounded/soft shadows */
+	--radius-selector: 1rem; /* rounded-2xl */
+	--radius-field: 0.75rem;
+	--radius-box: 1rem;
+	--depth: 1;
+
+	/* Optional sizes & borders */
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+}
+
+/* ---- Project tokens / utilities ---- */
+:root {
+	/* glow colors (rgb tuples for shadows) */
+	--glow-magenta: 255 0 128;
+	--glow-blue: 56 189 248;
+}
+
+/* utility helpers */
+.glass {
+	/* Equivalent of bg-white/5 + backdrop-blur-md + border + border-white/10 + rounded-2xl */
+	background-color: rgb(255 255 255 / 0.05);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	border: 1px solid rgb(255 255 255 / 0.1);
+	border-radius: 1rem;
+}
+
+.gradient-radial {
+	background: radial-gradient(
+		1200px 600px at 70% 20%,
+		color-mix(in oklch, var(--color-primary) 35%, transparent),
+		transparent 60%
+	);
+}
+
+/* Optional Tailwind plugin examples for v4: 
+   You can add forms plugin like this:
+   @plugin "@tailwindcss/forms";
+   (See v4 plugin usage notes.)  */
