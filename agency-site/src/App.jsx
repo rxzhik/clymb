@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 import RouteTransition from "./components/RouteTransition.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 export default function App() {
 	return (
@@ -11,6 +12,7 @@ export default function App() {
 			</a>
 			<NavBar />
 			<main id="main">
+				<ScrollToTop behavior="instant" />
 				<RouteTransition>
 					<Outlet />
 				</RouteTransition>
