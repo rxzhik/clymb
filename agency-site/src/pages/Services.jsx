@@ -3,6 +3,7 @@ import ServiceBlock from "../sections/services/ServiceBlock.jsx";
 import Models from "../sections/services/Models.jsx";
 import Faq from "../sections/services/Faq.jsx";
 import ServicesCta from "../sections/services/ServicesCta.jsx";
+import { Helmet } from "react-helmet-async";
 
 export default function Services() {
 	const blocks = [
@@ -49,6 +50,47 @@ export default function Services() {
 	];
 	return (
 		<>
+			<Helmet>
+				<title>Services – Clymb</title>
+				<meta
+					name="description"
+					content="Explore our growth services: SEO, Paid Ads, Social, Web/CRO, Analytics and more."
+				/>
+				<link
+					rel="canonical"
+					href={
+						typeof window !== "undefined"
+							? window.location.origin + "/services"
+							: "https://example.com/services"
+					}
+				/>
+				<script type="application/ld+json">
+					{JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Home",
+								item:
+									typeof window !== "undefined"
+										? window.location.origin
+										: "https://example.com",
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: "Services",
+								item:
+									typeof window !== "undefined"
+										? window.location.origin + "/services"
+										: "https://example.com/services",
+							},
+						],
+					})}
+				</script>
+			</Helmet>
 			<ServicesHero />
 			{blocks.map((b, i) => (
 				<ServiceBlock key={i} {...b} />
