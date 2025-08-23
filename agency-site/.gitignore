@@ -1,0 +1,67 @@
+# --- Node & package managers ---
+node_modules/
+.pnpm-store/
+
+# --- Build / bundler output ---
+dist/
+build/
+.vite/
+.cache/
+.cache-loader/
+*.tsbuildinfo
+
+# --- Logs & diagnostics ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.pid
+*.pid.lock
+
+# --- Environment & secrets ---
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+
+# --- Test / coverage artifacts ---
+coverage/
+.cypress/
+playwright-report/
+test-results/
+
+# --- Storybook (if generated) ---
+storybook-static/
+
+# --- IDE / editor specific ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# --- OS generated files (macOS) ---
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# --- Misc caches ---
+*.tgz
+*.zip
+
+# --- Optional reports ---
+reports/
+
+# --- Temporary & lock artifacts (do not ignore package-lock / pnpm-lock / yarn.lock) ---
+# Keep lockfiles for reproducible installs.
+*.orig
