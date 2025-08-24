@@ -28,7 +28,7 @@ export default function Hero() {
 	return (
 		<section className="relative min-h-screen flex items-center pt-20 md:pt-28">
 			{/* Background gradient layer */}
-			<div className="absolute inset-0">
+			<div className="absolute inset-0 hidden md:block">
 				<GradientBlinds
 					className="w-full h-full"
 					gradientColors={["#FF9FFC", "#5227FF"]}

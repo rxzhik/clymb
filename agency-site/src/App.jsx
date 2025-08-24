@@ -7,7 +7,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 
 export default function App() {
 	return (
-		<div className="min-h-screen bg-base-100 relative overflow-hidden">
+		<div className="min-h-screen bg-base-100 relative overflow-hidden gradient-radial">
 			<Helmet>
 				<title>Clymb – Growth Marketing Agency</title>
 				<meta
@@ -42,6 +42,6 @@ export default function App() {
 				</RouteTransition>
 			</main>
 			<Footer />
-	</div>
+		</div>
 	);
 }
