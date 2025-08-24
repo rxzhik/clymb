@@ -292,12 +292,6 @@ export default function NavBar() {
 					</NavLink>
 				</nav>
 				<div className="flex gap-2 relative z-50">
-					<a
-						href="#book"
-						className="btn btn-sm btn-ghost rounded-2xl hidden md:flex"
-					>
-						Log in
-					</a>
 					<NavLink
 						to="/contact"
 						className="btn btn-sm btn-primary rounded-2xl shadow-[0_0_30px_rgba(var(--glow-magenta)/0.35)]"

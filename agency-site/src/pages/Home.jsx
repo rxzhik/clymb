@@ -8,7 +8,7 @@ import Process from "../sections/home/Process.jsx";
 import Testimonials from "../sections/home/Testimonials.jsx";
 import PricingTeaser from "../sections/home/PricingTeaser.jsx";
 import CtaBand from "../sections/home/CtaBand.jsx";
-
+import GradientBlinds from "../components/GradientBlinds.jsx";
 export default function Home() {
 	return (
 		<>
