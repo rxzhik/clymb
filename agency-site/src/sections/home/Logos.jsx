@@ -5,7 +5,7 @@ export default function Logos() {
 	const ref = useRef(null);
 	useReveal(ref);
 	return (
-		<section ref={ref} className="mt-6 mb-2">
+		<section ref={ref} className="p-0">
 			<LogoCloud />
 		</section>
 	);

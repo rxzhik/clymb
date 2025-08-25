@@ -2,13 +2,11 @@ import { Helmet } from "react-helmet-async";
 import Hero from "../sections/home/Hero.jsx";
 import Logos from "../sections/home/Logos.jsx";
 import ServicesSnapshot from "../sections/home/ServicesSnapshot.jsx";
-import Stats from "../sections/home/Stats.jsx";
 import CaseStudies from "../sections/home/CaseStudies.jsx";
 import Process from "../sections/home/Process.jsx";
 import Testimonials from "../sections/home/Testimonials.jsx";
-import PricingTeaser from "../sections/home/PricingTeaser.jsx";
 import CtaBand from "../sections/home/CtaBand.jsx";
-import GradientBlinds from "../components/GradientBlinds.jsx";
+
 export default function Home() {
 	return (
 		<>
@@ -46,11 +44,9 @@ export default function Home() {
 			<Hero />
 			<Logos />
 			<ServicesSnapshot />
-			<Stats />
 			<CaseStudies />
 			<Process />
 			<Testimonials />
-			<PricingTeaser />
 			<CtaBand />
 		</>
 	);
