@@ -69,7 +69,91 @@
 	);
 }
 
+/* Magenta glass card utility for StarBorder inner content */
+.glass-magenta {
+	position: relative;
+	background: linear-gradient(
+			145deg,
+			rgba(255, 0, 170, 0.15),
+			rgba(120, 0, 255, 0.08) 35%,
+			rgba(0, 0, 0, 0) 80%
+		),
+		rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 0, 170, 0.35);
+	border-radius: 1rem;
+	backdrop-filter: blur(18px) saturate(160%);
+	-webkit-backdrop-filter: blur(18px) saturate(160%);
+	box-shadow: 0 0 0 1px rgba(255, 0, 170, 0.35),
+		0 4px 10px -2px rgba(255, 0, 170, 0.45),
+		0 12px 40px -8px rgba(140, 0, 255, 0.55),
+		0 0 32px -4px rgba(255, 0, 200, 0.25);
+	overflow: clip;
+}
+
+.glass-magenta::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: radial-gradient(
+		circle at 30% 20%,
+		rgba(255, 0, 200, 0.45),
+		transparent 60%
+	);
+	opacity: 0.35;
+	pointer-events: none;
+}
+
+.glass-magenta::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 2px;
+	border-radius: inherit;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.6),
+		rgba(255, 0, 170, 0.4),
+		rgba(255, 255, 255, 0.6)
+	);
+	opacity: 0.55;
+	pointer-events: none;
+}
+
 /* Optional Tailwind plugin examples for v4: 
    You can add forms plugin like this:
    @plugin "@tailwindcss/forms";
    (See v4 plugin usage notes.)  */
+
+/* ---- StarBorder animations (Tailwind v4 style) ---- */
+@layer utilities {
+	@keyframes star-movement-bottom {
+		0% {
+			transform: translate(0%, 0%);
+			opacity: 1;
+		}
+		100% {
+			transform: translate(-100%, 0%);
+			opacity: 0;
+		}
+	}
+	@keyframes star-movement-top {
+		0% {
+			transform: translate(0%, 0%);
+			opacity: 1;
+		}
+		100% {
+			transform: translate(100%, 0%);
+			opacity: 0;
+		}
+	}
+	.animate-star-movement-bottom {
+		animation: star-movement-bottom var(--star-speed, 6s) linear infinite
+			alternate;
+	}
+	.animate-star-movement-top {
+		animation: star-movement-top var(--star-speed, 6s) linear infinite alternate;
+	}
+}

@@ -38,7 +38,7 @@ export default function Process() {
 		<section ref={ref} className="max-w-7xl mx-auto px-4 py-16">
 			<div className="max-w-3xl mx-auto mb-14">
 				<TextPressure
-					text="Featured Results"
+					text="4 Simple Steps to Results"
 					flex={true}
 					alpha={false}
 					stroke={false}

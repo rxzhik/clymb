@@ -14,21 +14,17 @@ export default function ContactForm() {
 		setShow(true);
 	};
 	return (
-		<section ref={ref} className="max-w-4xl mx-auto px-4 py-12">
-			<form onSubmit={submit} className="grid md:grid-cols-2 gap-4 glass p-6">
-				<Input name="name" placeholder="Name" required data-reveal />
-				<Input
-					name="email"
-					placeholder="Email"
-					type="email"
-					required
-					data-reveal
-				/>
-				<Input name="company" placeholder="Company" data-reveal />
+		<div ref={ref} className="w-full" data-reveal>
+			<form
+				onSubmit={submit}
+				className="grid md:grid-cols-2 gap-4 glass-magenta rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-[0_8px_30px_-4px_rgba(255,0,170,0.25)]"
+			>
+				<Input name="name" placeholder="Name" required />
+				<Input name="email" placeholder="Email" type="email" required />
+				<Input name="company" placeholder="Company" />
 				<select
 					className="select select-bordered rounded-2xl"
 					name="budget"
-					data-reveal
 					defaultValue=""
 				>
 					<option value="" disabled>
@@ -38,15 +34,13 @@ export default function ContactForm() {
 					<option>$5k–$20k</option>
 					<option>$20k+</option>
 				</select>
-				<div className="md:col-span-2" data-reveal>
+				<div className="md:col-span-2">
 					<TextArea name="goals" rows="5" placeholder="Tell us your goals" />
 				</div>
-				<label className="label cursor-pointer md:col-span-2" data-reveal>
-					<span className="label-text">Join newsletter</span>
-					<input type="checkbox" className="toggle toggle-info" />
-				</label>
-				<div className="md:col-span-2">
-					<Button type="submit">Send message</Button>
+				<div className="md:col-span-2 pt-2">
+					<Button type="submit" className="w-full md:w-auto">
+						Send message →
+					</Button>
 				</div>
 			</form>
 			<Toast
@@ -54,6 +48,6 @@ export default function ContactForm() {
 				show={show}
 				onClose={() => setShow(false)}
 			/>
-		</section>
+		</div>
 	);
 }

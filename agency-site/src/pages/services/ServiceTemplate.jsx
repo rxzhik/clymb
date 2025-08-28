@@ -1,12 +1,142 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 // Removed GSAP imports & revealSection for static rendering
 import { serviceContent } from "../../data/serviceContent.js";
-
+import MagicBento from "../../components/MagicBento.jsx";
+import StarBorder from "../../components/StarBorder.jsx";
+import TiltedCard from "../../components/TiltedCard.jsx";
 export default function ServiceTemplate({ service }) {
 	const containerRef = useRef(null);
 
+	// Fade-in on scroll for bullet cards
+	useEffect(() => {
+		const root = containerRef.current;
+		if (!root) return;
+		const cards = root.querySelectorAll(".service-bullet-card");
+		if (!cards.length) return;
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("in-view");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.15 }
+		);
+		cards.forEach((c) => observer.observe(c));
+		return () => observer.disconnect();
+	}, [service?.id]);
+
 	if (!service) return null;
 	const extended = serviceContent[service.id];
+
+	// Stable Unsplash image mapping per bullet id to avoid random / broken sources
+	const bulletImages = {
+		"market-research":
+			"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+		"brand-positioning":
+			"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=60",
+		"customer-persona":
+			"https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=60",
+		"strategy-roadmap":
+			"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+		"content-strategy":
+			"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=60",
+		"design-dev":
+			"https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=800&q=60",
+		"landing-pages":
+			"https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=60",
+		"mobile-app":
+			"https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=60",
+		"ux-ui":
+			"https://images.unsplash.com/photo-1587613864521-9ef8d300dd16?auto=format&fit=crop&w=800&q=60",
+		cro: "https://images.unsplash.com/photo-1532619187608-e5375cab36aa?auto=format&fit=crop&w=800&q=60",
+		seo: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=60",
+		"keyword-research":
+			"https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&w=800&q=60",
+		"on-page":
+			"https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?auto=format&fit=crop&w=800&q=60",
+		"off-page":
+			"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60",
+		"technical-seo":
+			"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=60",
+		"local-seo":
+			"https://images.unsplash.com/photo-1441323263989-281bc2f5b68c?auto=format&fit=crop&w=800&q=60",
+		"sem-ppc":
+			"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60",
+		"google-ads":
+			"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60",
+		"bing-ads":
+			"https://images.unsplash.com/photo-1515523110800-9415d13b84a0?auto=format&fit=crop&w=800&q=60",
+		"organic-management":
+			"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+		"creative-production":
+			"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+		"posting-scheduling":
+			"https://images.unsplash.com/photo-1532619187608-e5375cab36aa?auto=format&fit=crop&w=800&q=60",
+		community:
+			"https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=800&q=60",
+		"paid-social":
+			"https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=800&q=60",
+		"facebook-ads":
+			"https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=60",
+		"tiktok-ads":
+			"https://images.unsplash.com/photo-1603791452906-bb9f4f0ecb4c?auto=format&fit=crop&w=800&q=60",
+		"linkedin-ads":
+			"https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=800&q=60",
+		"snapchat-ads":
+			"https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=60",
+		"twitter-ads":
+			"https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=60",
+		"blog-writing":
+			"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60",
+		"video-production":
+			"https://images.unsplash.com/photo-1587613864521-9ef8d300dd16?auto=format&fit=crop&w=800&q=60",
+		"creative-media":
+			"https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=60",
+		infographics:
+			"https://images.unsplash.com/photo-1587614382346-ac44d4c8e069?auto=format&fit=crop&w=800&q=60",
+		"long-form-assets":
+			"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=60",
+		"campaign-automation":
+			"https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=60",
+		"nurture-sequences":
+			"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60",
+		"list-segmentation":
+			"https://images.unsplash.com/photo-1532619187608-e5375cab36aa?auto=format&fit=crop&w=800&q=60",
+		"crm-setup":
+			"https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=800&q=60",
+		"influencer-campaigns":
+			"https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=60",
+		"affiliate-program":
+			"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=60",
+		"brand-collabs":
+			"https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=60",
+		"tracking-setup":
+			"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=60",
+		dashboards:
+			"https://images.unsplash.com/photo-1508847154043-be5407fcaa5a?auto=format&fit=crop&w=800&q=60",
+		"ab-testing":
+			"https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=800&q=60",
+		attribution:
+			"https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=60",
+		"automation-ai":
+			"https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=60",
+		"sms-whatsapp":
+			"https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=800&q=60",
+		podcast:
+			"https://images.unsplash.com/photo-1587613864521-9ef8d300dd16?auto=format&fit=crop&w=800&q=60",
+		webinars:
+			"https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=60",
+		"ar-vr":
+			"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=60",
+		orm: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",
+		"review-generation":
+			"https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=60",
+		"feedback-loops":
+			"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=60",
+	};
 
 	return (
 		<div ref={containerRef} className="max-w-6xl mx-auto px-4 py-16">
@@ -29,7 +159,7 @@ export default function ServiceTemplate({ service }) {
 				</div>
 			</div>
 
-			{extended?.overview && (
+			{/* {extended?.overview && (
 				<section className="mb-24 space-y-6">
 					{extended.overview.map((p, i) => (
 						<p key={i} className="text-white leading-relaxed text-lg">
@@ -37,89 +167,115 @@ export default function ServiceTemplate({ service }) {
 						</p>
 					))}
 				</section>
-			)}
-
-			<div className="grid gap-12 mb-20">
-				{service.bullets.map((b) => (
-					<div
-						key={b.id}
-						id={b.id}
-						className="service-bullet-card glass p-6 rounded-2xl relative overflow-hidden group text-white"
-					>
-						<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/25 via-secondary/10 to-transparent pointer-events-none" />
-						<img
-							loading="lazy"
-							src={`https://source.unsplash.com/400x300/?${
-								service.id.split("-")[0]
-							},${b.id.split("-")[0]}`}
-							alt=""
-							className="w-full h-32 object-cover rounded-xl mb-3"
-						/>
-						<h3 className="text-2xl font-bold mb-2 flex items-center gap-3 text-info">
-							<span className="text-primary text-3xl" aria-hidden>
-								•
-							</span>
-							{b.label}
-						</h3>
-						<p className="text-white leading-relaxed">{b.blurb}</p>
-						{extended?.sections?.[b.id]?.map((p, i) => (
-							<p key={i} className="mt-3 text-white/90 text-sm leading-relaxed">
-								{p}
-							</p>
-						))}
-					</div>
-				))}
+			)} */}
+			<div className="flex flex-col gap-20 mb-20">
+				{service.bullets.map((b, idx) => {
+					const isReversed = idx % 2 === 1;
+					return (
+						<StarBorder
+							key={b.id}
+							as="div"
+							className="custom-class"
+							color="Magenta"
+							speed="3s"
+							thickness={5}
+						>
+							<div
+								id={b.id}
+								className="service-bullet-card glass-magenta rounded-2xl relative overflow-hidden group text-white will-change-transform hover:-translate-y-1 hover:shadow-[0_8px_30px_-4px_rgba(255,0,170,0.45)] opacity-0 translate-y-8 transition-all ease-out duration-700 [&.in-view]:opacity-100 [&.in-view]:translate-y-0"
+							>
+								<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/25 via-secondary/10 to-transparent pointer-events-none" />
+								<div
+									className={`flex flex-col md:flex-row ${
+										isReversed ? "md:flex-row-reverse" : ""
+									} w-full h-full`}
+								>
+									<div className="relative md:w-1/2 w-full h-60 md:h-auto min-h-full">
+										<img
+											loading="lazy"
+											src={bulletImages[b.id] || service.image}
+											alt={b.label}
+											className="absolute inset-0 w-full h-full object-cover"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+									</div>
+									<div
+										className={`md:w-1/2 w-full flex flex-col ${
+											isReversed
+												? "items-end text-right"
+												: "items-start text-left"
+										} p-8 md:p-12 gap-5 justify-center`}
+									>
+										<h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight drop-shadow-[0_2px_6px_rgba(255,0,170,0.35)]">
+											{b.label}
+										</h3>
+										{(() => {
+											const paragraphs = [
+												b.blurb,
+												...(extended?.sections?.[b.id] || []),
+											];
+											const combined = paragraphs.join(" ");
+											return (
+												<p className="text-white/90 text-base sm:text-lg leading-relaxed whitespace-pre-line max-w-prose">
+													{combined}
+												</p>
+											);
+										})()}
+									</div>
+								</div>
+							</div>
+						</StarBorder>
+					);
+				})}
 			</div>
 
 			<section className="mb-24">
-				<h2 className="text-3xl font-extrabold mb-6 text-accent">Process</h2>
-				<ol className="grid md:grid-cols-5 gap-4 text-sm">
-					{["Discover", "Diagnose", "Design", "Deploy", "Double-Down"].map(
-						(step, i) => (
-							<li
-								key={step}
-								className="service-process-item glass rounded-xl p-4 flex flex-col gap-2 text-white"
-							>
-								<span className="text-xs font-semibold tracking-wide text-white/60">
-									{String(i + 1).padStart(2, "0")}
-								</span>
-								<span className="font-semibold text-info">{step}</span>
-								<span className="text-xs text-white/80 leading-relaxed">
-									{
-										[
-											"Stakeholder / data intake & alignment",
-											"Insight synthesis & prioritization",
-											"Strategy & asset / experiment design",
-											"Ship, implement, launch & QA",
-											"Analyze lifts → scale or iterate",
-										][i]
-									}
-								</span>
-							</li>
-						)
-					)}
-				</ol>
+				<h2 className="text-center text-white text-4xl sm:text-5xl md:text-6xl font-extrabold mb-10 tracking-tight drop-shadow-[0_4px_18px_rgba(132,0,255,0.35)]">
+					Our Process
+				</h2>
+				<MagicBento
+					textAutoHide={true}
+					enableStars={true}
+					enableSpotlight={true}
+					enableBorderGlow={true}
+					enableTilt={true}
+					enableMagnetism={true}
+					clickEffect={true}
+					spotlightRadius={300}
+					particleCount={100}
+					glowColor="132, 0, 255"
+					fullWidth={true}
+				/>
 			</section>
 
 			<section className="mb-24">
-				<h2 className="text-3xl font-extrabold mb-6 text-accent">
+				<h2 className="text-center text-white text-4xl sm:text-5xl md:text-6xl font-extrabold mb-10 tracking-tight drop-shadow-[0_4px_18px_rgba(132,0,255,0.35)]">
 					Recent Wins
 				</h2>
-				<div className="grid md:grid-cols-3 gap-6">
-					{[1, 2, 3].map((i) => (
-						<div
+				<div className="grid md:grid-cols-3 gap-10">
+					{["TechZenith", "CyberObligation", "Moment Designer"].map((i) => (
+						<TiltedCard
 							key={i}
-							className="service-win-card glass p-5 rounded-2xl flex flex-col gap-3 text-white"
-						>
-							<div className="text-sm font-semibold text-info">Client {i}</div>
-							<p className="text-sm text-white/80 leading-relaxed">
-								Metric lift & narrative placeholder illustrating quantitative
-								outcome tied to this service pillar.
-							</p>
-							<div className="text-2xl font-extrabold text-success">
-								+{20 + i * 5}%
-							</div>
-						</div>
+							imageSrc="https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58"
+							altText="Kendrick Lamar - GNX Album Cover"
+							captionText="Kendrick Lamar - GNX"
+							containerHeight="340px"
+							containerWidth="100%"
+							imageHeight="340px"
+							imageWidth="100%"
+							rotateAmplitude={10}
+							scaleOnHover={1.08}
+							showMobileWarning={false}
+							showTooltip={false}
+							displayOverlayContent={true}
+							overlayContent={
+								<div className="pointer-events-none flex items-start justify-center w-full h-full pt-10 md:pt-12">
+									<div className="bg-white/15 backdrop-blur-md text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-full shadow-[0_4px_18px_rgba(0,0,0,0.35)] border border-white/20">
+										{i}
+									</div>
+								</div>
+							}
+						/>
 					))}
 				</div>
 			</section>

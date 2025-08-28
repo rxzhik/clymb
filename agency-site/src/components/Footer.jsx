@@ -1,37 +1,34 @@
 export default function Footer() {
 	return (
 		<footer className="mt-20 border-t border-white/10">
-			<div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+			<div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-10">
 				<div>
-					<div className="font-black text-2xl mb-2">Agency</div>
-					<p className="opacity-80">
-						Premium marketing execution for ambitious teams.
+					<div className="font-black text-4xl sm:text-5xl mb-3 tracking-tight leading-none">
+						clymb
+					</div>
+					<p className="opacity-80 max-w-xs text-sm">
+						Turning Ambition into Altitute
 					</p>
 				</div>
-				<nav className="grid gap-2">
-					<a className="link link-hover">Services</a>
-					<a className="link link-hover">Case studies</a>
-					<a className="link link-hover">Pricing</a>
+				<nav className="flex  justify-center items-center gap-8 text-l">
+					<a href="/about" className="link link-hover whitespace-nowrap">
+						About us
+					</a>
+					<a href="/contact" className="link link-hover whitespace-nowrap">
+						Contact us
+					</a>
 				</nav>
-				<nav className="grid gap-2">
-					<a className="link link-hover">About</a>
-					<a className="link link-hover">Careers</a>
-					<a className="link link-hover">Contact</a>
-				</nav>
-				<form className="grid gap-2">
-					<label className="text-sm opacity-75">Subscribe for insights</label>
-					<input
-						type="email"
-						placeholder="you@company.com"
-						className="input input-bordered rounded-2xl"
-					/>
-					<button className="btn btn-primary rounded-2xl">
-						Join newsletter
-					</button>
-				</form>
+				<div className="flex  md:justify-end">
+					<a
+						href="/contact"
+						className="btn btn-primary rounded-2xl self-start shadow-[0_0_20px_rgba(var(--glow-magenta)/0.35)]"
+					>
+						Start Project →
+					</a>
+				</div>
 			</div>
-			<div className="text-center opacity-70 pb-6">
-				© 2025 Agency. All rights reserved.
+			<div className="text-center opacity-70 pb-6 text-xs">
+				© 2025 clymb. All rights reserved.
 			</div>
 		</footer>
 	);

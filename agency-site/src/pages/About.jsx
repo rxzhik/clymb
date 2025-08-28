@@ -1,4 +1,5 @@
 import MissionHero from "../sections/about/MissionHero.jsx";
+import ImageStory from "../sections/about/ImageStory.jsx";
 import Values from "../sections/about/Values.jsx";
 import Team from "../sections/about/Team.jsx";
 import Culture from "../sections/about/Culture.jsx";
@@ -50,9 +51,8 @@ export default function About() {
 				</script>
 			</Helmet>
 			<MissionHero />
-			<Values />
+			<ImageStory />
 			<Team />
-			<Culture />
 			<CareersCta />
 		</>
 	);
