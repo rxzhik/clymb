@@ -50,7 +50,7 @@ export default function Hero() {
 					<h1 className="text-5xl md:text-6xl font-black leading-tight">
 						<span
 							data-hero-word
-							className="relative block text-9xl font-extrabold mb-6 -ml-2"
+							className="relative block  text-[7rem] md:text-9xl font-extrabold mb-6 -ml-2"
 						>
 							{/* Bottom layer: continuous gradient across the whole word */}
 							<span

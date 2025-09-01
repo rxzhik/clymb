@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
 const ChromaGrid = ({
@@ -75,7 +75,20 @@ const ChromaGrid = ({
 
 	const data = items?.length ? items : demo;
 
+	const [isMobile, setIsMobile] = useState(false);
+
+	// Detect mobile (tailwind sm breakpoint ~640px)
 	useEffect(() => {
+		const mq = window.matchMedia("(max-width: 640px)");
+		const handler = (e) => setIsMobile(e.matches);
+		setIsMobile(mq.matches);
+		mq.addEventListener("change", handler);
+		return () => mq.removeEventListener("change", handler);
+	}, []);
+
+	// Initialize animation only on non-mobile
+	useEffect(() => {
+		if (isMobile) return; // skip expensive setup on mobile
 		const el = rootRef.current;
 		if (!el) return;
 		setX.current = gsap.quickSetter(el, "--x", "px");
@@ -84,7 +97,7 @@ const ChromaGrid = ({
 		pos.current = { x: width / 2, y: height / 2 };
 		setX.current(pos.current.x);
 		setY.current(pos.current.y);
-	}, []);
+	}, [isMobile]);
 
 	const moveTo = (x, y) => {
 		gsap.to(pos.current, {
@@ -125,6 +138,50 @@ const ChromaGrid = ({
 		c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
 	};
 
+	// Mobile static rendering: no animation, all cards "lit" (gradient visible)
+	if (isMobile) {
+		return (
+			<div className={`grid grid-cols-1 gap-4 w-full ${className}`}>
+				{data.map((c, i) => (
+					<article
+						key={i}
+						onClick={() => handleCardClick(c.url)}
+						className="relative flex flex-col w-full rounded-[20px] overflow-hidden border-2 shadow-sm"
+						style={{
+							borderColor: c.borderColor || "transparent",
+							background: c.gradient,
+							height: `${cardHeight}px`,
+						}}
+					>
+						<div className="relative flex-1 p-[10px] box-border">
+							<img
+								src={c.image}
+								alt={c.title}
+								loading="lazy"
+								className="w-full h-full object-cover rounded-[10px]"
+							/>
+						</div>
+						<footer className="p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
+							<h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
+							{c.handle && (
+								<span className="text-[0.95rem] opacity-80 text-right">
+									{c.handle}
+								</span>
+							)}
+							<p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
+							{c.location && (
+								<span className="text-[0.85rem] opacity-85 text-right">
+									{c.location}
+								</span>
+							)}
+						</footer>
+					</article>
+				))}
+			</div>
+		);
+	}
+
+	// Desktop / larger screens: full interactive animated version
 	return (
 		<div
 			ref={rootRef}
