@@ -2,35 +2,42 @@ import { useRef, useState } from "react";
 import useReveal from "../../lib/animations/useReveal.js";
 import TextPressure from "../../components/TextPressure.jsx";
 
-// Simple avatar list for fake content
+// Testimonial avatars (client representatives)
 const AVATARS = [
 	{
-		name: "Artem Jones",
-		role: "Junior Frontend Developer",
+		name: "Leah Martinez",
+		role: "Founder, TechZenith",
 		img: "https://i.pravatar.cc/120?img=12",
 	},
 	{
-		name: "Jackie Mackle",
-		role: "Engineering Manager",
+		name: "Victor Huang",
+		role: "COO, CyberObligation",
 		img: "https://i.pravatar.cc/120?img=32",
 	},
 	{
-		name: "Dev Patel",
-		role: "Data Analyst",
+		name: "Ashley Brooke",
+		role: "Owner, Lash Beauty Studio",
 		img: "https://i.pravatar.cc/120?img=56",
 	},
 	{
-		name: "Sara Lin",
-		role: "Product Designer",
+		name: "Priya Nair",
+		role: "Director, Trident Schools",
 		img: "https://i.pravatar.cc/120?img=47",
+	},
+	{
+		name: "James Holloway",
+		role: "Creative Lead, Moment Designer",
+		img: "https://i.pravatar.cc/120?img=58",
 	},
 ];
 
+// Primary rotating quotes (aligned by index with AVATARS)
 const PRIMARY_QUOTES = [
-	"roadmap.sh is an incredible resource. I was fortunate to discover it during my university days in 2018. Back then, it was just a single repository with three images. It’s amazing to see how much impact it has had on millions of lives since then.",
-	"Since starting my career in 2021, I have only followed one resource. It helped me go from 0 to having a job and changing the financial trajectory of my family.",
-	"I recommend it to every mentee. Clear, visual and motivating—exactly what early‑stage technologists need to stay on track.",
-	"It removed the overwhelm. I could see the path, tick skills off and focus on depth instead of doom‑scrolling tutorials.",
+	"Clymb rebuilt our acquisition engine. Organic traffic is up 182% and our inbound demo requests tripled without increasing ad spend.",
+	"Their technical SEO + paid retargeting framework closed a leak we’d been chasing for a year. CAC down 34% while qualified pipeline went up.",
+	"We needed local intent visibility and fast booking flow improvements. Clymb delivered – 6x more booked lash sets in 90 days.",
+	"They repositioned our digital presence and implemented a nurture + content calendar that lifted open day registrations by 71%.",
+	"Clymb translated our brand mood into campaigns that convert. Our portfolio inquiries now come with budget clarity and 2x higher close rates.",
 ];
 
 export default function Testimonials() {
@@ -64,11 +71,12 @@ export default function Testimonials() {
 					data-reveal
 				>
 					<p className="mb-6">
-						I have been solving all the project ideas here and I am surprised
-						how far I have come from where I started.
+						Clymb guided our funnel rebuild and identified quick-win SEO fixes
+						we kept overlooking.
 						<br />
 						<br />
-						Highly recommended!
+						Within 6 weeks we saw qualified demos accelerate – exactly what we
+						needed pre‑launch.
 					</p>
 					<div className="flex items-center gap-3">
 						<img
@@ -128,7 +136,7 @@ export default function Testimonials() {
 						))}
 					</div>
 					<h3 className="text-lg md:text-2xl font-semibold mb-4 md:mb-6">
-						{AVATARS[(index + 1) % AVATARS.length].name}
+						{AVATARS[index].name}
 					</h3>
 					<p className="text-xs md:text-sm leading-relaxed opacity-85 flex-1">
 						{PRIMARY_QUOTES[index]}
@@ -136,14 +144,12 @@ export default function Testimonials() {
 					<div className="mt-6 md:mt-8 flex items-center justify-between">
 						<div className="flex items-center gap-3">
 							<img
-								src={AVATARS[(index + 1) % AVATARS.length].img}
-								alt={AVATARS[(index + 1) % AVATARS.length].name}
+								src={AVATARS[index].img}
+								alt={AVATARS[index].name}
 								className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover ring-2 ring-white/20"
 							/>
 							<div>
-								<div className="font-medium text-sm">
-									{AVATARS[(index + 1) % AVATARS.length].role}
-								</div>
+								<div className="font-medium text-sm">{AVATARS[index].role}</div>
 							</div>
 						</div>
 					</div>
