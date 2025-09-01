@@ -192,14 +192,8 @@ export default function NavBar() {
 	}, [mobileOpen]);
 
 	return (
-		<div
-			className={`fixed top-0 left-0 right-0 z-50 ${
-				scrolled ? "backdrop-blur bg-black/30" : ""
-			}`}
-			role="navigation"
-			aria-label="Main"
-		>
-			{/* Overlays */}
+		<>
+			{/* Overlays (placed at top level to avoid clipping) */}
 			{open && (
 				<div
 					className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden md:block"
@@ -214,39 +208,46 @@ export default function NavBar() {
 					onClick={() => setMobileOpen(false)}
 				/>
 			)}
-			{/* Bar */}
-			<div className="relative max-w-7xl mx-auto px-4 py-3 flex items-center justify-between z-50">
-				<NavLink
-					to="/"
-					className="font-black text-3xl tracking-tight relative z-50"
-				>
-					Clymb
-				</NavLink>
-				{/* Mobile services button (replaces dropdown) */}
-				<div className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-					<button
-						className="btn btn-sm btn-ghost rounded-2xl gap-2"
-						aria-label="Open menu"
-						aria-haspopup="menu"
-						aria-expanded={mobileOpen}
-						onClick={() => setMobileOpen((o) => !o)}
+			{/* Fixed nav bar wrapper only contains the bar (backdrop blur applied here) */}
+			<div
+				className={`fixed top-0 left-0 right-0 z-50 ${
+					scrolled ? "backdrop-blur bg-black/30" : ""
+				}`}
+				role="navigation"
+				aria-label="Main"
+			>
+				<div className="relative max-w-7xl mx-auto px-4 py-3 flex items-center justify-between z-50">
+					<NavLink
+						to="/"
+						className="font-black text-3xl tracking-tight relative z-50"
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={2}
-							stroke="currentColor"
-							className="size-7"
+						Clymb
+					</NavLink>
+					{/* Mobile burger button */}
+					<div className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+						<button
+							className="btn btn-sm btn-ghost rounded-2xl gap-2"
+							aria-label="Open menu"
+							aria-haspopup="menu"
+							aria-expanded={mobileOpen}
+							onClick={() => setMobileOpen((o) => !o)}
 						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-							/>
-						</svg>
-					</button>
-				</div>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={2}
+								stroke="currentColor"
+								className="size-7"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+								/>
+							</svg>
+						</button>
+					</div>
 				{/* Existing desktop nav ...existing code... */}
 				<nav
 					className="hidden md:flex gap-2 relative z-50"
@@ -299,6 +300,7 @@ export default function NavBar() {
 						Start Project
 					</NavLink>
 				</div>
+			</div>
 			</div>
 			{/* Desktop mega panel ...existing code... */}
 			<div
@@ -370,7 +372,7 @@ export default function NavBar() {
 					</div>
 				</div>
 			</div>
-			{/* Mobile full-screen services sheet */}
+			{/* Mobile full-screen services sheet (outside blurred wrapper) */}
 			{mobileOpen && (
 				<div
 					ref={mobilePanelRef}
@@ -466,6 +468,6 @@ export default function NavBar() {
 					</div>
 				</div>
 			)}
-		</div>
+		</>
 	);
 }
