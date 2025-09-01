@@ -110,9 +110,9 @@ export default function ServicesSnapshot() {
 				<ChromaGrid
 					items={items}
 					radius={600}
-					damping={0.45}
+					damping={0.01}
 					fadeOut={0.6}
-					ease="power3.in"
+					ease="expo.out"
 				/>
 			</div>
 		</section>
