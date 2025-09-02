@@ -3,19 +3,29 @@ import LogoLoop from "./LogoLoop";
 export default function LogoCloud() {
 	const imageLogos = [
 		{
-			src: "/images/harsh.png",
-			alt: "Heritage & Haute",
+			src: "/images/techzenith.png",
+			alt: "Tech Zenith",
 			href: "https://techzenith.com.au",
 		},
 		{
 			src: "/images/Trident.png",
-			alt: "1",
-			href: "https://cyberobligation.com",
+			alt: "Trident Public School",
+			href: "https://tridentpublicschool.com/",
 		},
 		{
-			src: "/logos/company3.png",
-			alt: "2",
+			src: "/images/harsh.png",
+			alt: "CyberObligation",
+			href: "https://cyberobligation.com/",
+		},
+		{
+			src: "/images/harsh.png",
+			alt: "Moment Designer",
 			href: "https://momentdesigner.com.au/",
+		},
+		{
+			src: "/images/yeu.png",
+			alt: "YEU",
+			href: "https://yeucosmetics.com/",
 		},
 	];
 
