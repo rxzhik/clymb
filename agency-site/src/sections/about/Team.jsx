@@ -7,10 +7,14 @@ export default function Team() {
 	const ref = useRef(null);
 	useReveal(ref);
 	const team = [
-		["Rashik", "Head of Technology"],
-		["Ripsy", "Head of Marketing"],
-		["Sanjolika", "Head of Design"],
-		["Uday", "Head of Finance"],
+		{ name: "Rashik", role: "Head of Technology", image: "/images/Rashik.png" },
+		{ name: "Ripsy", role: "Head of Marketing", image: "/images/Ripsy.png" },
+		{
+			name: "Sanjolika",
+			role: "Head of Design",
+			image: "/images/Sanjolika.png",
+		},
+		{ name: "Uday", role: "Head of Finance", image: "/images/Uday.png" },
 	];
 	return (
 		<section ref={ref} className="max-w-6xl mx-auto px-4 py-12">
@@ -25,21 +29,21 @@ export default function Team() {
 				/>
 			</div>
 			<div className="flex flex-wrap gap-6 justify-center mt-10" data-reveal>
-				{team.map(([n, r], i) => (
+				{team.map((member, i) => (
 					<div
 						key={i}
 						className="basis-full  sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex justify-center max-w-full"
 					>
 						<ProfileCard
 							className="w-full"
-							name={n}
-							title={r}
+							name={member.name}
+							title={member.role}
 							handle="javicodes"
 							status="Online"
 							contactText="Contact Me"
-							avatarUrl="/images/profilecardpic.png"
-							iconUrl="/images/profilecardpic.png"
-							grainUrl="/images/profilecardpic.png"
+							avatarUrl={member.image}
+							iconUrl={member.image}
+							grainUrl={member.image}
 							showUserInfo={true}
 							enableTilt={true}
 							enableMobileTilt={false}

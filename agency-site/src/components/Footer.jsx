@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Footer() {
 	return (
 		<footer className="mt-20 border-t border-white/10">
@@ -11,20 +13,20 @@ export default function Footer() {
 					</p>
 				</div>
 				<nav className="flex  justify-center items-center gap-8 text-l">
-					<a href="/about" className="link link-hover whitespace-nowrap">
+					<NavLink to="/about" className="link link-hover whitespace-nowrap">
 						About us
-					</a>
-					<a href="/contact" className="link link-hover whitespace-nowrap">
+					</NavLink>
+					<NavLink to="/contact" className="link link-hover whitespace-nowrap">
 						Contact us
-					</a>
+					</NavLink>
 				</nav>
 				<div className="flex  md:justify-end">
-					<a
-						href="/contact"
+					<NavLink
+						to="/contact"
 						className="btn btn-primary rounded-2xl self-start shadow-[0_0_20px_rgba(var(--glow-magenta)/0.35)]"
 					>
 						Start Project →
-					</a>
+					</NavLink>
 				</div>
 			</div>
 			<div className="text-center opacity-70 pb-6 text-xs">

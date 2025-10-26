@@ -13,12 +13,12 @@ export default function LogoCloud() {
 			href: "https://tridentpublicschool.com/",
 		},
 		{
-			src: "/images/harsh.png",
+			src: "/images/cyberobligation.png",
 			alt: "CyberObligation",
 			href: "https://cyberobligation.com/",
 		},
 		{
-			src: "/images/harsh.png",
+			src: "/images/moment.png",
 			alt: "Moment Designer",
 			href: "https://momentdesigner.com.au/",
 		},

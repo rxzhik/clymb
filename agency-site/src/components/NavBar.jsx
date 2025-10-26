@@ -248,59 +248,59 @@ export default function NavBar() {
 							</svg>
 						</button>
 					</div>
-				{/* Existing desktop nav ...existing code... */}
-				<nav
-					className="hidden md:flex gap-2 relative z-50"
-					role="menubar"
-					aria-label="Primary"
-					onKeyDown={onTopKeyDown}
-				>
-					<NavLink
-						to="/about"
-						className={link}
-						ref={(el) => (topRefs.current[0] = el)}
-						role="menuitem"
-						aria-label="About"
+					{/* Existing desktop nav ...existing code... */}
+					<nav
+						className="hidden md:flex gap-2 relative z-50"
+						role="menubar"
+						aria-label="Primary"
+						onKeyDown={onTopKeyDown}
 					>
-						About
-					</NavLink>
-					<button
-						className="px-3 py-2 rounded-lg opacity-80 hover:opacity-100"
-						aria-haspopup="true"
-						aria-expanded={open}
-						aria-controls="services-mega"
-						role="menuitem"
-						ref={(el) => {
-							topRefs.current[1] = el;
-							servicesBtnRef.current = el;
-						}}
-						onClick={(e) => {
-							prevFocusedRef.current = e.currentTarget;
-							setOpen((o) => !o);
-							if (!open) setFocusMegaOnOpen(false);
-						}}
-					>
-						Services
-					</button>
-					<NavLink
-						to="/contact"
-						className={link}
-						ref={(el) => (topRefs.current[2] = el)}
-						role="menuitem"
-						aria-label="Contact"
-					>
-						Contact
-					</NavLink>
-				</nav>
-				<div className="flex gap-2 relative z-50">
-					<NavLink
-						to="/contact"
-						className="btn btn-sm btn-primary rounded-2xl shadow-[0_0_30px_rgba(var(--glow-magenta)/0.35)]"
-					>
-						Start Project
-					</NavLink>
+						<NavLink
+							to="/about"
+							className={link}
+							ref={(el) => (topRefs.current[0] = el)}
+							role="menuitem"
+							aria-label="About"
+						>
+							About
+						</NavLink>
+						<button
+							className="px-3 py-2 rounded-lg opacity-80 hover:opacity-100"
+							aria-haspopup="true"
+							aria-expanded={open}
+							aria-controls="services-mega"
+							role="menuitem"
+							ref={(el) => {
+								topRefs.current[1] = el;
+								servicesBtnRef.current = el;
+							}}
+							onClick={(e) => {
+								prevFocusedRef.current = e.currentTarget;
+								setOpen((o) => !o);
+								if (!open) setFocusMegaOnOpen(false);
+							}}
+						>
+							Services
+						</button>
+						<NavLink
+							to="/contact"
+							className={link}
+							ref={(el) => (topRefs.current[2] = el)}
+							role="menuitem"
+							aria-label="Contact"
+						>
+							Contact
+						</NavLink>
+					</nav>
+					<div className="flex gap-2 relative z-50">
+						<NavLink
+							to="/contact"
+							className="btn btn-sm btn-primary rounded-2xl shadow-[0_0_30px_rgba(var(--glow-magenta)/0.35)]"
+						>
+							Start Project
+						</NavLink>
+					</div>
 				</div>
-			</div>
 			</div>
 			{/* Desktop mega panel ...existing code... */}
 			<div

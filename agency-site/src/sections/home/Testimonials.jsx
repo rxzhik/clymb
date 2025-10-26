@@ -5,29 +5,29 @@ import TextPressure from "../../components/TextPressure.jsx";
 // Testimonial avatars (client representatives)
 const AVATARS = [
 	{
-		name: "Leah Martinez",
+		name: "Akash Chaudhary",
 		role: "Founder, TechZenith",
-		img: "https://i.pravatar.cc/120?img=12",
+		img: "/images/profileicon.jpg",
 	},
 	{
-		name: "Victor Huang",
+		name: "Kawish Raj",
 		role: "COO, CyberObligation",
-		img: "https://i.pravatar.cc/120?img=32",
+		img: "/images/profileicon.jpg",
 	},
 	{
-		name: "Ashley Brooke",
+		name: "Uday Chaudhary",
 		role: "Owner, Lash Beauty Studio",
-		img: "https://i.pravatar.cc/120?img=56",
+		img: "/images/profileicon.jpg",
 	},
 	{
-		name: "Priya Nair",
+		name: "Arun Kumar Thakur",
 		role: "Director, Trident Schools",
-		img: "https://i.pravatar.cc/120?img=47",
+		img: "/images/profileicon.jpg",
 	},
 	{
-		name: "James Holloway",
+		name: "Yukti Singh",
 		role: "Creative Lead, Moment Designer",
-		img: "https://i.pravatar.cc/120?img=58",
+		img: "/images/profileicon.jpg",
 	},
 ];
 
