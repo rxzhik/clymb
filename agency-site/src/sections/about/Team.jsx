@@ -7,14 +7,12 @@ export default function Team() {
 	const ref = useRef(null);
 	useReveal(ref);
 	const team = [
-		{ name: "Rashik", role: "Head of Technology", image: "/images/Rashik.png" },
-		{ name: "Ripsy", role: "Head of Marketing", image: "/images/Ripsy.png" },
 		{
 			name: "Sanjolika",
-			role: "Head of Design",
+			role: "HR & Operations Manager",
 			image: "/images/Sanjolika.png",
 		},
-		{ name: "Uday", role: "Head of Finance", image: "/images/Uday.png" },
+		{ name: "Uday", role: "Head of Marketing", image: "/images/Uday.png" },
 	];
 	return (
 		<section ref={ref} className="max-w-6xl mx-auto px-4 py-12">

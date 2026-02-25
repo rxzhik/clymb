@@ -109,6 +109,7 @@ export default function ServicesSnapshot() {
 			<div className="mt-20" style={{ position: "relative" }}>
 				<ChromaGrid
 					items={items}
+					staticMode={true}
 					radius={600}
 					damping={0.01}
 					fadeOut={0.6}

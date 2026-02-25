@@ -9,6 +9,7 @@ const ChromaGrid = ({
 	fadeOut = 0.6,
 	ease = "power3.out",
 	cardHeight = 360, // uniform card height in px
+	staticMode = false, // when true, disable spotlight and render static cards on all screens
 }) => {
 	const rootRef = useRef(null);
 	const fadeRef = useRef(null);
@@ -88,7 +89,8 @@ const ChromaGrid = ({
 
 	// Initialize animation only on non-mobile
 	useEffect(() => {
-		if (isMobile) return; // skip expensive setup on mobile
+		const isStatic = staticMode || isMobile;
+		if (isStatic) return; // skip expensive setup when static
 		const el = rootRef.current;
 		if (!el) return;
 		setX.current = gsap.quickSetter(el, "--x", "px");
@@ -97,7 +99,7 @@ const ChromaGrid = ({
 		pos.current = { x: width / 2, y: height / 2 };
 		setX.current(pos.current.x);
 		setY.current(pos.current.y);
-	}, [isMobile]);
+	}, [isMobile, staticMode]);
 
 	const moveTo = (x, y) => {
 		gsap.to(pos.current, {
@@ -138,8 +140,9 @@ const ChromaGrid = ({
 		c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
 	};
 
-	// Mobile static rendering: no animation, all cards "lit" (gradient visible)
-	if (isMobile) {
+	// Static rendering: no spotlight animation; cards are pre-lit with their gradients
+	const isStatic = staticMode || isMobile;
+	if (isStatic) {
 		return (
 			<div className={`grid grid-cols-1 gap-4 w-full ${className}`}>
 				{data.map((c, i) => (
@@ -164,15 +167,11 @@ const ChromaGrid = ({
 						<footer className="p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
 							<h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
 							{c.handle && (
-								<span className="text-[0.95rem] opacity-80 text-right">
-									{c.handle}
-								</span>
+								<span className="text-[0.95rem] opacity-80 text-right">{c.handle}</span>
 							)}
 							<p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
 							{c.location && (
-								<span className="text-[0.85rem] opacity-85 text-right">
-									{c.location}
-								</span>
+								<span className="text-[0.85rem] opacity-85 text-right">{c.location}</span>
 							)}
 						</footer>
 					</article>

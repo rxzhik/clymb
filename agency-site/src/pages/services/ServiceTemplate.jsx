@@ -253,41 +253,50 @@ export default function ServiceTemplate({ service }) {
 				<h2 className="text-center text-white text-4xl sm:text-5xl md:text-6xl font-extrabold mb-10 tracking-tight drop-shadow-[0_4px_18px_rgba(132,0,255,0.35)]">
 					Recent Wins
 				</h2>
-					{(() => {
-						const recentWins = [
-							{ title: "Trident Schools", image: "/images/Trident_Schools_RecentWins.jpg" },
-							{ title: "Cyber Obligation", image: "/images/Cyber_Obligation_Card.jpg" },
-							{ title: "Moment Designer", image: "/images/moment_designer_card.jpg" },
-						];
-						return (
-							<div className="grid md:grid-cols-3 gap-10">
-								{recentWins.map((item) => (
-									<TiltedCard
-										key={item.title}
-										imageSrc={item.image}
-										altText={`${item.title} case study`}
-										captionText={item.title}
-										containerHeight="340px"
-										containerWidth="100%"
-										imageHeight="340px"
-										imageWidth="100%"
-										rotateAmplitude={10}
-										scaleOnHover={1.08}
-										showMobileWarning={false}
-										showTooltip={false}
-										displayOverlayContent={true}
-										overlayContent={
-											<div className="pointer-events-none flex items-start justify-center w-full h-full pt-10 md:pt-12">
-												<div className="bg-white/15 backdrop-blur-md text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-full shadow-[0_4px_18px_rgba(0,0,0,0.35)] border border-white/20">
-													{item.title}
-												</div>
+				{(() => {
+					const recentWins = [
+						{
+							title: "Trident Schools",
+							image: "/images/Trident_Schools_RecentWins.jpg",
+						},
+						{
+							title: "Cyber Obligation",
+							image: "/images/Cyber_Obligation_Card.jpg",
+						},
+						{
+							title: "Moment Designer",
+							image: "/images/moment_designer_card.jpg",
+						},
+					];
+					return (
+						<div className="grid md:grid-cols-3 gap-10">
+							{recentWins.map((item) => (
+								<TiltedCard
+									key={item.title}
+									imageSrc={item.image}
+									altText={`${item.title} case study`}
+									captionText={item.title}
+									containerHeight="340px"
+									containerWidth="100%"
+									imageHeight="340px"
+									imageWidth="100%"
+									rotateAmplitude={10}
+									scaleOnHover={1.08}
+									showMobileWarning={false}
+									showTooltip={false}
+									displayOverlayContent={true}
+									overlayContent={
+										<div className="pointer-events-none flex items-start justify-center w-full h-full pt-10 md:pt-12">
+											<div className="bg-white/15 backdrop-blur-md text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-full shadow-[0_4px_18px_rgba(0,0,0,0.35)] border border-white/20">
+												{item.title}
 											</div>
-										}
-									/>
-								))}
-							</div>
-						);
-					})()}
+										</div>
+									}
+								/>
+							))}
+						</div>
+					);
+				})()}
 			</section>
 
 			<section className="service-cta mb-8 relative overflow-hidden rounded-3xl p-10 bg-gradient-to-r from-primary/30 via-secondary/20 to-transparent">

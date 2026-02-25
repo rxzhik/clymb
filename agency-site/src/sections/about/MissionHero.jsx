@@ -18,15 +18,8 @@ export default function MissionHero() {
 					/>
 					<div className="space-y-6 text-base sm:text-lg md:text-lg leading-relaxed opacity-90">
 						<p>
-							Our journey began with a simple observation: brands were investing
-							more in attention than in systems that compound. We started this
-							agency to flip that model. Instead of chasing every fleeting
-							trend, we architect growth engines— research‑backed positioning,
-							full‑funnel creative, performance loops and retention
-							frameworks—that get sharper with every cycle. What began as a
-							two‑person experiment in a cramped co‑working corner has grown
-							into a multidisciplinary team trusted by category creators and
-							challengers alike.
+							Ripsy and Rashik were university students. Always chasing the
+							adventerous life
 						</p>
 					</div>
 				</div>
@@ -35,7 +28,7 @@ export default function MissionHero() {
 					className="relative order-1 md:order-2 w-full h-64 sm:h-80 md:h-full max-h-[520px] rounded-2xl overflow-hidden"
 				>
 					<img
-						src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=60"
+						src="/images/clymb_team.jpg"
 						alt="Early days of the team collaborating at a whiteboard"
 						className="w-full h-full object-cover"
 					/>

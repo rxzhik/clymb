@@ -43,6 +43,14 @@ const PRIMARY_QUOTES = [
 export default function Testimonials() {
 	const ref = useRef(null);
 	useReveal(ref);
+	// Conditionally recolor the shared blue/white profile icon to purple/black
+	const recolorIfIcon = (src) =>
+		src && src.includes("profileicon")
+			? {
+				filter:
+					"hue-rotate(290deg) saturate(180%) brightness(0.85) contrast(120%)",
+			}
+			: undefined;
 	const [index, setIndex] = useState(0);
 	const next = () => setIndex((i) => (i + 1) % PRIMARY_QUOTES.length);
 	const prev = () =>
@@ -83,6 +91,7 @@ export default function Testimonials() {
 							src={AVATARS[0].img}
 							alt={AVATARS[0].name}
 							className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-white/20"
+							style={recolorIfIcon(AVATARS[0].img)}
 						/>
 						<div>
 							<div className="font-semibold text-sm">{AVATARS[0].name}</div>
@@ -101,10 +110,11 @@ export default function Testimonials() {
 							src={AVATARS[1].img}
 							alt={AVATARS[1].name}
 							className="w-12 h-12 rounded-full object-cover ring-2 ring-white/20"
+							style={recolorIfIcon(AVATARS[1].img)}
 						/>
 						<div>
 							<div className="font-semibold text-sm">{AVATARS[1].name}</div>
-							<div className="text-xs opacity-70">{AVATARS[0].role}</div>
+							<div className="text-xs opacity-70">{AVATARS[1].role}</div>
 						</div>
 					</div>
 				</div>
@@ -116,7 +126,7 @@ export default function Testimonials() {
 					data-reveal
 				>
 					<img
-						src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=60"
+						src="/images/Uday.png"
 						alt="Story"
 						className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition"
 					/>
@@ -147,6 +157,7 @@ export default function Testimonials() {
 								src={AVATARS[index].img}
 								alt={AVATARS[index].name}
 								className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover ring-2 ring-white/20"
+								style={recolorIfIcon(AVATARS[index].img)}
 							/>
 							<div>
 								<div className="font-medium text-sm">{AVATARS[index].role}</div>
@@ -178,6 +189,7 @@ export default function Testimonials() {
 											src={a.img}
 											alt={a.name}
 											className="w-full h-full rounded-full object-cover"
+											style={recolorIfIcon(a.img)}
 										/>
 									</button>
 								))}
